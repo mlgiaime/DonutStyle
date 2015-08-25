@@ -1,1 +1,89 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="stylesheet1.css">
+	<title>Donuts are bad, mmmkay</title>
+</head>
+<body>
+	<h1>Welcome to the world of doughnuts</h1>
+	<table>
+		<style>
+    	table, th, td, tr {
+      border: 1px  solid BLACK;
+      border-color: 4F0075;
+    	}
+  	</style>
+			<thead>
+				<tr  bgcolor = '#ffce76'>
+					<th>Location</th>
+					<th>Business Hours</th>
+					<th>Doughnuts per hour</th>
+					<th>Average doughnuts per customer</th>
+					<th>Doughnuts made per hour</th>
+					<th>Doughnuts made per day</th>
+				</tr>
+			</thead>
+	<script type="text/javascript">
+		var DoughnutStore = function(hours, min, max, avg, location) {
+			this.hoursOpenPerDay = hours;
+			this.minCustomersPerHour = min;
+			this.maxCustomersPerHour = max;
+			this.avgDoughnutsPerCustomer = avg;
+			this.location = location;
+			this.avgCustomersPerHour = Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour);
+			this.doughnutsPerHour = function() {
+				return Math.round(this.avgCustomersPerHour * this.avgDoughnutsPerCustomer);
+			};
+			this.doughnutsPerDay = function() {
+				return this.doughnutsPerHour() * this.hoursOpenPerDay;
+			};
+		};
 
+		var DoughnutMaster = function(array) {
+			this.locations = array;
+			this.addShop = function(location) {
+				this.locations.push(location);
+			};
+			this.generateReport = function() {
+				for (var i = 0; i < this.locations.length; i++) {
+
+				console.log("location " + this.locations[i].location + " doughnutsPerHour " +  this.locations[i].doughnutsPerHour() + " doughnutsPerDay " + this.locations[i].doughnutsPerDay());
+
+				document.write("<tr>" + "<td align = 'left' bgcolor = '#ff8a6b'>" + this.locations[i].location + "<td align = 'center' bgcolor = '#8effec'>" + this.locations[i].hoursOpenPerDay + "<td align = 'center' bgcolor = '#6bdcff'>" + this.locations[i].doughnutsPerHour() + "<td align = 'center' bgcolor = '#a0abff'>" + this.locations[i].avgDoughnutsPerCustomer + "<td align = 'center' bgcolor = '#b796ff'>" + this.locations[i].doughnutsPerHour() + "<td align = 'center' bgcolor = '#CC8BFF'>" + this.locations[i].doughnutsPerDay() );
+				};
+			};
+		};
+
+		var ballard = new DoughnutStore(12, 8, 58, 3.75, "Ballard");
+		var downtown = new DoughnutStore(16, 8, 43, 4.5, "Downtown");
+		var capHill = new DoughnutStore(14, 4, 37, 2, "Capitol Hill");
+		var southLU = new DoughnutStore(12, 9, 23, 6.33, "South Lake Union");
+		var wedgwood = new DoughnutStore(15, 2, 28, 1.25, "Wedgwood");
+
+		var hq = new DoughnutMaster([ballard, downtown, capHill, southLU, wedgwood]);
+
+		hq.generateReport();
+		console.log(hq.locations.length);
+
+	</script>
+</table>
+	<caption>This table is a representation of the potential daily doughnut demand at various doughnut shops in a popular Seattle chain.</caption>
+	<p>Doughnuts have been popular for over a hundred years and have made their way into many cultures around the world.</p>
+	<p>Doughnuts come in many shapes, sizes, and decorations.</p>
+	<p>The most common doughnut varieties found in the United States are:</p>
+		<ul>
+			<li><a href="https://www.krispykreme.com/">Glazed</a></li>
+				<img src="http://upload.wikimedia.org/wikipedia/commons/0/0d/Krispy_Kreme_glazed_donut.JPG">
+			<li><a href="http://www.yelp.com/biz/family-donut-shop-seattle-2">Crullers</a></li>
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6HYILBdozREnCeIM3eESZg5KQbko2id8StydlKCMy8O53d_X1BA">
+			<li><a href="https://foursquare.com/top-places/seattle/best-places-apple-fritters">Apple Fritters</a></li>
+				<img src="http://vittlemonster.files.wordpress.com/2011/10/photo-744640.jpg">
+			<li><a href="http://rodeodonut.com/">Creme or jelly filled</a></li>
+				<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRxqtmDtInODJveQRxTy7Rcswc9VQgVWmNUxMb4wcq4uHzhvlo91w">
+			<li><a href="http://voodoodoughnut.com/doughnuts.php">Maple bars--with or without bacon</a></li>
+				<img src="http://www.sogoodblog.com/wp-content/uploads/2012/03/Maple-Bacon-Voodoo-Doughnut.jpg">
+			<li><a href="http://rodeodonut.com/">Doughnut holes</a></li>
+				<img src="http://quirkymarketingcalendar.com/wp-content/uploads/2013/04/munchkins-from-Dunkin-Donuts-300x300.png">
+<!--also referred to as Jude Law Balls-->
+		</ul>
+</body>
+</html>
